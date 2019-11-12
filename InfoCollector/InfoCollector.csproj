@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="BaseInfoClass.cs" />
     <Compile Include="ClassInfo.cs" />
+    <Compile Include="ConstructorInfoClass.cs" />
     <Compile Include="EventInfoClass.cs" />
     <Compile Include="FieldInfoClass.cs" />
     <Compile Include="MethodInfoClass.cs" />

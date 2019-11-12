@@ -11,17 +11,16 @@ namespace InfoCollector
     {
         public string GetMethodInfo(MethodInfo methodInfo)
         {
-            var returnType = GetTypeName(methodInfo.ReturnType);
-            var parameters = methodInfo.GetParameters();
-            var declaration =
-                    $"{GetMethodDeclaration(methodInfo)} {returnType} {GetMethodName(methodInfo)} {GetMethodParametersString(parameters)}";
+            string returnType = GetTypeName(methodInfo.ReturnType);
+            ParameterInfo[] parameters = methodInfo.GetParameters();
+            string declaration =
+                    $"{GetMethodDeclaration(methodInfo)} {returnType} {GetMethodName(methodInfo)} {GetMethodParameters(parameters)}";
 
                 return declaration;
         }
 
-        private string GetMethodName(MethodBase method)
+        private string GetMethodName(MethodInfo method)
         {
-
             if (method.IsGenericMethod)
             {
                 return method.Name + GetGenericArgumentsString(method.GetGenericArguments());
@@ -29,14 +28,39 @@ namespace InfoCollector
             return method.Name;
         }
 
-        private string GetMethodDeclaration(MethodBase methodBase)
+        private string GetMethodParameters(ParameterInfo[] parameters)
         {
-            throw new System.NotImplementedException();
+            StringBuilder parametersString = new StringBuilder("(");
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                parametersString.Append(GetTypeName(parameters[i].ParameterType));
+                if (i != parameters.Length - 1)
+                {
+                    parametersString.Append(", ");
+                }
+            }
+            parametersString.Append(")");
+
+            return parametersString.ToString();
         }
 
-        private string GetMethodParametersString(ParameterInfo[] parameters)
+        private string GetMethodDeclaration(MethodInfo method)
         {
-            throw new System.NotImplementedException();
+            StringBuilder result = new StringBuilder();
+
+            if (method.IsAssembly)
+                result.Append("internal ");
+            else if (method.IsFamily)
+                result.Append("protected ");
+            else if (method.IsFamilyOrAssembly)
+                result.Append("protected internal ");
+            else if (method.IsFamilyAndAssembly)
+                result.Append("private protected ");
+            else if (method.IsPrivate)
+                result.Append("private ");
+            else if (method.IsPublic)
+                result.Append("public ");
+            return result.ToString();
         }
     }
 }

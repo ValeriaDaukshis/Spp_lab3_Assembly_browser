@@ -11,11 +11,11 @@ namespace InfoCollector
     {
         public string GetPropertyInfo(PropertyInfo propertyInfo)
         {
-            var result = new StringBuilder(GetTypeName(propertyInfo.PropertyType));
+            StringBuilder result = new StringBuilder(GetTypeName(propertyInfo.PropertyType));
             result.Append(" ");
             result.Append(propertyInfo.Name);
 
-            var accessors = propertyInfo.GetAccessors(true);
+            MethodInfo[] accessors = propertyInfo.GetAccessors(true);
             foreach (var accessor in accessors)
             {
                 if (accessor.IsSpecialName)

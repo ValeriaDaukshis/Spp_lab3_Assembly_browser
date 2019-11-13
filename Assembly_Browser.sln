@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoCollector", "InfoCollector\InfoCollector.csproj", "{B8CF4931-3A82-4EE9-B4FC-C89EFD7E1CCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserView", "AssemblyBrowserView\AssemblyBrowserView.csproj", "{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B8CF4931-3A82-4EE9-B4FC-C89EFD7E1CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8CF4931-3A82-4EE9-B4FC-C89EFD7E1CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8CF4931-3A82-4EE9-B4FC-C89EFD7E1CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

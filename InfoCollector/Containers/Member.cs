@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfoCollector
+namespace InfoCollector.Containers
 {
-    class ClassInfo
+    public interface Member
     {
+        string MemberInformation { get; }
     }
 }

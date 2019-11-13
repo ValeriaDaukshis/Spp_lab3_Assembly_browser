@@ -1,10 +1,20 @@
 ﻿using System.Text;
 using System.Reflection;
+using InfoCollector.Containers;
 
 namespace InfoCollector
 {
-    public class FieldInfoClass : BaseInfoClass
+    public class FieldInfoClass : BaseInfoClass, Member
     {
+        private FieldInfo info;
+
+        public string MemberInformation => GetFieldInfo(info);
+
+        public FieldInfoClass(FieldInfo info)
+        {
+            this.info = info;
+        }
+
         protected string GetFieldInfo(FieldInfo field)
         {
             StringBuilder result = new StringBuilder();

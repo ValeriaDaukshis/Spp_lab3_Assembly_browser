@@ -38,15 +38,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseInfoClass.cs" />
-    <Compile Include="ClassInfo.cs" />
-    <Compile Include="ConstructorInfoClass.cs" />
-    <Compile Include="EventInfoClass.cs" />
-    <Compile Include="FieldInfoClass.cs" />
-    <Compile Include="MethodInfoClass.cs" />
+    <Compile Include="AssemblyBrowser.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Containers\ContainerInfo.cs" />
+    <Compile Include="Containers\Member.cs" />
+    <Compile Include="MembersInfo\BaseInfoClass.cs" />
+    <Compile Include="MembersInfo\ClassInfo.cs" />
+    <Compile Include="MembersInfo\ConstructorInfoClass.cs" />
+    <Compile Include="MembersInfo\EventInfoClass.cs" />
+    <Compile Include="MembersInfo\FieldInfoClass.cs" />
+    <Compile Include="MembersInfo\MethodInfoClass.cs" />
+    <Compile Include="NamespacesInfoClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyInfoClass.cs" />
+    <Compile Include="MembersInfo\PropertyInfoClass.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.

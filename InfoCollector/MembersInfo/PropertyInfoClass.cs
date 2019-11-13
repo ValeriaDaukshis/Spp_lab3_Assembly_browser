@@ -1,10 +1,20 @@
 ﻿using System.Reflection;
 using System.Text;
+using InfoCollector.Containers;
 
-namespace InfoCollector
+namespace InfoCollector.MembersInfo
 {
-    public class PropertyInfoClass : BaseInfoClass
+    public class PropertyInfoClass : BaseInfoClass, Member
     {
+        private PropertyInfo info;
+
+        public string MemberInformation => GetPropertyInfo(info);
+
+        public PropertyInfoClass(PropertyInfo info)
+        {
+            this.info = info;
+        }
+
         public string GetPropertyInfo(PropertyInfo propertyInfo)
         {
             StringBuilder result = new StringBuilder(GetTypeName(propertyInfo.PropertyType));

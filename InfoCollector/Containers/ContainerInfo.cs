@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using InfoCollector.MembersInfo;
 
 namespace InfoCollector.Containers
 {
-    public class ContainerInfo : Member
+    public class ContainerInfo
     {
-        public List<Member> Members { get; set; }
+        public List<Member> ClassificationElements { get; set; }
+        public string Classification { get; set; }
 
-        public ContainerInfo()
+        public void AddClassificationElement(Member element)
         {
-            Members = new List<Member>();
+            ClassificationElements.Add(element);
         }
 
-        public void AddMember(Member member)
+        public ContainerInfo(string classification, List<Member> elements)
         {
-            Members.Add(member);
+            Classification = classification;
+            ClassificationElements = elements;
         }
 
-        public string MemberInformation { get; }
     }
 }

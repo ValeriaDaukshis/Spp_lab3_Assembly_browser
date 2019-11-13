@@ -8,6 +8,6 @@ namespace InfoCollector.Containers
 {
     public interface Member
     {
-        string MemberInformation { get; }
+        string Name { get; set; }
     }
 }

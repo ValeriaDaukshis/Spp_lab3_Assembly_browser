@@ -8,11 +8,12 @@ namespace InfoCollector
     {
         private FieldInfo info;
 
-        public string MemberInformation => GetFieldInfo(info);
-
+        public string Name { get; set; }
+        
         public FieldInfoClass(FieldInfo info)
         {
             this.info = info;
+            Name = GetFieldInfo(info);
         }
 
         protected string GetFieldInfo(FieldInfo field)

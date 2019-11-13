@@ -4,14 +4,15 @@ using InfoCollector.Containers;
 
 namespace InfoCollector
 {
-    class EventInfoClass : BaseInfoClass, Member
+    public class EventInfoClass : BaseInfoClass, Member
     {
         private EventInfo eventInfo;
-        public string MemberInformation => GetEventDeclaration(eventInfo);
+        public string Name { get; set; }
 
         public EventInfoClass(EventInfo eventInfo)
         {
             this.eventInfo = eventInfo;
+            Name = GetEventDeclaration(eventInfo);
         }
 
         private string GetEventDeclaration(EventInfo eventInfo)

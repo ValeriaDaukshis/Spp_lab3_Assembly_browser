@@ -8,15 +8,21 @@ using InfoCollector.Containers;
 
 namespace InfoCollector.MembersInfo
 {
-    public class NamespaceInfoClass : ContainerInfo, Member
+    public class NamespaceInfoClass
     {
-        private string name;
+        public string Name { get; set; }
 
-        public string MemberInformation => $"namespace {name}";
+        public List<ClassInfo> Classes { get; set; }
 
         public NamespaceInfoClass(string name)
         {
-            this.name = name;
+            Name = "namespace " + name;
+            Classes = new List<ClassInfo>();
+        }
+
+        public void AddClass(ClassInfo classInfo)
+        {
+            Classes.Add(classInfo);
         }
     }
 }

@@ -8,14 +8,15 @@ namespace InfoCollector.MembersInfo
     {
         private PropertyInfo info;
 
-        public string MemberInformation => GetPropertyInfo(info);
+        public string Name { get; set; }
 
         public PropertyInfoClass(PropertyInfo info)
         {
             this.info = info;
+            Name = GetPropertyInfo(info);
         }
 
-        private string GetPropertyInfo(PropertyInfo propertyInfo)
+        public string GetPropertyInfo(PropertyInfo propertyInfo)
         {
             StringBuilder result = new StringBuilder(GetTypeName(propertyInfo.PropertyType));
             result.Append(" ");

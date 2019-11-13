@@ -12,11 +12,12 @@ namespace InfoCollector.MembersInfo
     {
         private string info;
 
-        public string MemberInformation => $"class {info}";
+        public string Name { get; set; }
 
         public TypeInfoClass(string info)
         {
             this.info = info;
+            Name = $"class {info}";
         }
     }
 }

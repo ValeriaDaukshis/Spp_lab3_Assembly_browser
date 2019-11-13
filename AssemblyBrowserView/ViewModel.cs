@@ -1,55 +1,66 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Input;
 using AssemblyBrowserView.Annotations;
+using InfoCollector;
 using InfoCollector.Containers;
 
 namespace AssemblyBrowserView
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        private string _openedFile;
-        public ContainerInfo[] Containers { get; set; }
+        private string _filename;
+        private AssemblyResult _result;
+        private Command _openFileCommand;
         private Model _browserModel;
 
         public string Filename
         {
             get
             {
-                return Path.GetFileName(_openedFile);
+                return Path.GetFileName(_filename);
             }
             set
             {
-                _openedFile = value;
+                _filename = value;
                 OnPropertyChanged();
             }
         }
 
-        public ContainerInfo[] Result
+        public AssemblyResult Result
         {
             get
             {
-                return Containers;
+                return _result;
             }
             set
             {
-                Containers = value;
+                _result = value;
                 OnPropertyChanged();
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public ICommand OpenFileCommand
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return _openFileCommand ?? (_openFileCommand = new Command(OpenFileMethod));
+            }
         }
 
-        public ICommand OpenFile { get { return new Command(OpenAssembly); } }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OpenAssembly(object obj)
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public void OpenFileMethod(object obj)
         {
             using (var openFileDialog = new OpenFileDialog())
             {
@@ -63,7 +74,6 @@ namespace AssemblyBrowserView
                     if (_browserModel == null)
                         _browserModel = new Model();
                     Result = _browserModel.GetResult(openFileDialog.FileName);
-                    OnPropertyChanged(nameof(Filename));
                 }
             }
         }

@@ -17,7 +17,7 @@ namespace AssemblyBrowserView
             _browser = new AssemblyBrowser();
         }
 
-        public ContainerInfo[] GetResult(string filename)
+        public AssemblyResult GetResult(string filename)
         {
             return _browser.GetNamespaces(filename);
         }

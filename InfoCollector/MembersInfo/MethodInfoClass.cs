@@ -8,11 +8,12 @@ namespace InfoCollector
     {
         private MethodInfo info;
 
-        public string MemberInformation => GetMethodInfo(info);
+        public string Name { get; set; }
 
         public MethodInfoClass(MethodInfo info)
         {
             this.info = info;
+            Name = GetMethodInfo(info);
         }
 
         public string GetMethodInfo(MethodInfo methodInfo)

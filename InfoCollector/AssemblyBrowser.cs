@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using InfoCollector.Containers;
@@ -8,31 +9,26 @@ namespace InfoCollector
 {
     public class AssemblyBrowser
     {
-        public ContainerInfo[] GetNamespaces(string path)
+        public AssemblyResult GetNamespaces(string path)
         {
-            var assembly = Assembly.LoadFile(path);
-            var types = assembly.GetTypes();
-            var namespaces = new Dictionary<string, ContainerInfo>();
+            AssemblyResult _result = new AssemblyResult();
+            Type[] types;
+            NamespaceInfoClass searchResult;
+
+            Assembly _asm = Assembly.LoadFrom(path);
+            types = _asm.GetTypes();
+            _result.Clear();
             foreach (var type in types)
             {
-                string typeNamespace = type.Namespace;
-                if (typeNamespace == null) continue;
-                ContainerInfo namespaceInfo;
-                if (!namespaces.ContainsKey(typeNamespace))
+                searchResult = _result.FindNamespace(type.Namespace);
+                if (searchResult == null)
                 {
-                    namespaceInfo = new NamespaceInfoClass(typeNamespace);
-                    namespaces.Add(typeNamespace, namespaceInfo);
+                    searchResult = new NamespaceInfoClass(type.Namespace);
+                    _result.AddNamespace(searchResult);
                 }
-                else
-                {
-                    namespaces.TryGetValue(typeNamespace, out namespaceInfo);
-                }
-                Member typeInfo = new ClassInfo(type).GetTypeInfo();
-                namespaceInfo?.AddMember(typeInfo);
+                searchResult.AddClass(new ClassInfo(type));
             }
-            ContainerInfo[] result = namespaces.Values.ToArray();
-
-            return result;
+            return _result;
         }
     }
 }

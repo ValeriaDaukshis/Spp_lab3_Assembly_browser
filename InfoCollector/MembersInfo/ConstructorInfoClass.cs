@@ -7,11 +7,12 @@ namespace InfoCollector
     {
         private ConstructorInfo constructorInfo;
 
-        public string MemberInformation => GetConstructorInfo(constructorInfo);
+        public string Name { get; set; }
 
         public ConstructorInfoClass(ConstructorInfo constructorInfo)
         {
             this.constructorInfo = constructorInfo;
+            Name = $"constructor {GetConstructorInfo(constructorInfo)}";
         }
 
         private string GetConstructorInfo(ConstructorInfo constructorInfo)

@@ -48,6 +48,8 @@
     <Compile Include="MembersInfo\EventInfoClass.cs" />
     <Compile Include="MembersInfo\FieldInfoClass.cs" />
     <Compile Include="MembersInfo\MethodInfoClass.cs" />
+    <Compile Include="MembersInfo\NamespaceInfoClass.cs" />
+    <Compile Include="MembersInfo\TypeInfoClass.cs" />
     <Compile Include="NamespacesInfoClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MembersInfo\PropertyInfoClass.cs" />

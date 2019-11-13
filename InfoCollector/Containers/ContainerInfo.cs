@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InfoCollector.Containers
 {
-    public class ContainerInfo
+    public class ContainerInfo 
     {
         public List<Member> Members { get; set; }
 

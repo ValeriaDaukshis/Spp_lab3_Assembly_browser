@@ -15,7 +15,7 @@ namespace InfoCollector.MembersInfo
             this.info = info;
         }
 
-        public string GetPropertyInfo(PropertyInfo propertyInfo)
+        private string GetPropertyInfo(PropertyInfo propertyInfo)
         {
             StringBuilder result = new StringBuilder(GetTypeName(propertyInfo.PropertyType));
             result.Append(" ");

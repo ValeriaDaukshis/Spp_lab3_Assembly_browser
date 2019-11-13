@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace AssemblyBrowserView
 {
-    public class OpenFileCommand : ICommand
+    public class Command : ICommand
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
@@ -14,7 +14,7 @@ namespace AssemblyBrowserView
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public OpenFileCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public Command(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Input;
-using AssemblyBrowserView.Annotations;
 using InfoCollector;
-using InfoCollector.Containers;
 
 namespace AssemblyBrowserView
 {

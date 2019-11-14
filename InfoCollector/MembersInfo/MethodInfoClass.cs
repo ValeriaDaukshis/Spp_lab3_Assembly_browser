@@ -6,13 +6,10 @@ namespace InfoCollector
 {
     public class MethodInfoClass : BaseInfoClass, Member
     {
-        private MethodInfo info;
-
         public string Name { get; set; }
 
         public MethodInfoClass(MethodInfo info)
         {
-            this.info = info;
             Name = GetMethodInfo(info);
         }
 

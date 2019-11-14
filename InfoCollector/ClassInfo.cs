@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using InfoCollector.Containers;
 using InfoCollector.MembersInfo;
 
@@ -9,20 +11,25 @@ namespace InfoCollector
     public class ClassInfo : BaseInfoClass
     {
         private Type _type;
+        private Assembly assembly;
 
         public string Name { get; set; }
 
         public List<ContainerInfo> Elements { get; set; }
 
-        public ClassInfo(Type type)
+        public ClassInfo(Type type, Assembly assembly)
         {
             _type = type;
-            Name = type.Name; //!!!!!!!!!
+            Name = new TypeInfoClass(type).Name + type.Name;
             Elements = new List<ContainerInfo>();
+            this.assembly = assembly;
             AddElements();
+
             ScanFields();
             ScanProperties();
             ScanMethods();
+            ScanConstructors();
+            ScanExtensions();
         }
 
         public void AddElements()
@@ -30,6 +37,8 @@ namespace InfoCollector
             Elements.Add(new ContainerInfo("Fields", new List<Member>()));
             Elements.Add(new ContainerInfo("Properties", new List<Member>()));
             Elements.Add(new ContainerInfo("Methods", new List<Member>()));
+            Elements.Add(new ContainerInfo("Constructors", new List<Member>()));
+            Elements.Add(new ContainerInfo("Extension methods", new List<Member>()));
         }
 
         public void ScanFields()
@@ -58,8 +67,32 @@ namespace InfoCollector
 
             foreach (MethodInfo method in methods)
             {
-                if (!method.IsSpecialName)
-                    Elements[2].AddClassificationElement(new MethodInfoClass(method));
+                Elements[2].AddClassificationElement(new MethodInfoClass(method));
+            }
+        }
+
+        public void ScanConstructors()
+        {
+            ConstructorInfo[] constructorInfos = _type.GetConstructors(BindingFlags.DeclaredOnly | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach (ConstructorInfo method in constructorInfos)
+            {
+                Elements[3].AddClassificationElement(new ConstructorInfoClass(method));
+            }
+        }
+
+        public void ScanExtensions()
+        {
+            var constructorInfos =  from type in assembly.GetTypes()
+                where type.IsSealed && !type.IsGenericType && !type.IsNested
+                from method in type.GetMethods(BindingFlags.Static
+                                               | BindingFlags.Public | BindingFlags.NonPublic)
+                where method.IsDefined(typeof(ExtensionAttribute), false)
+                select method;
+
+            foreach (var method in constructorInfos)
+            {
+                Elements[4].AddClassificationElement(new ExtensionInfoClass(method));
             }
         }
     }

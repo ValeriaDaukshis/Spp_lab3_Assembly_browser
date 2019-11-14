@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using InfoCollector.MembersInfo;
 
 namespace InfoCollector.Containers
 {
     public class ContainerInfo
     {
         public List<Member> ClassificationElements { get; set; }
+
         public string Classification { get; set; }
 
         public void AddClassificationElement(Member element)
@@ -18,6 +18,5 @@ namespace InfoCollector.Containers
             Classification = classification;
             ClassificationElements = elements;
         }
-
     }
 }

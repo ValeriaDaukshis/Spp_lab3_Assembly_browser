@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoCollector", "InfoCollec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyBrowserView", "AssemblyBrowserView\AssemblyBrowserView.csproj", "{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLib", "TestLib\TestLib.csproj", "{5EBE719B-1794-4654-8D4E-D3A640072D5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{BAF5C333-D194-458C-88EC-75CC31EF748F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66209FDA-C5A7-4F4A-80E4-B8F10517CFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EBE719B-1794-4654-8D4E-D3A640072D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBE719B-1794-4654-8D4E-D3A640072D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBE719B-1794-4654-8D4E-D3A640072D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBE719B-1794-4654-8D4E-D3A640072D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAF5C333-D194-458C-88EC-75CC31EF748F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF5C333-D194-458C-88EC-75CC31EF748F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF5C333-D194-458C-88EC-75CC31EF748F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF5C333-D194-458C-88EC-75CC31EF748F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

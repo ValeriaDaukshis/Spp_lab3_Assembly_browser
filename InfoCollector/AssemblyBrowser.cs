@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using InfoCollector.Containers;
 using InfoCollector.MembersInfo;
 
 namespace InfoCollector
@@ -11,24 +10,23 @@ namespace InfoCollector
     {
         public AssemblyResult GetNamespaces(string path)
         {
-            AssemblyResult _result = new AssemblyResult();
+            AssemblyResult result = new AssemblyResult();
             Type[] types;
             NamespaceInfoClass searchResult;
 
-            Assembly _asm = Assembly.LoadFrom(path);
-            types = _asm.GetTypes();
-            _result.Clear();
+            Assembly assembly = Assembly.LoadFrom(path);
+            types = assembly.GetTypes();
             foreach (var type in types)
             {
-                searchResult = _result.FindNamespace(type.Namespace);
+                searchResult = result.FindNamespace(type.Namespace);
                 if (searchResult == null)
                 {
                     searchResult = new NamespaceInfoClass(type.Namespace);
-                    _result.AddNamespace(searchResult);
+                    result.AddNamespace(searchResult);
                 }
-                searchResult.AddClass(new ClassInfo(type));
+                searchResult.AddClass(new ClassInfo(type, assembly));
             }
-            return _result;
+            return result;
         }
     }
 }

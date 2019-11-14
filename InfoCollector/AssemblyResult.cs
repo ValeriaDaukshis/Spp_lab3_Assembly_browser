@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using InfoCollector.MembersInfo;
 
 namespace InfoCollector
@@ -10,7 +6,6 @@ namespace InfoCollector
     public class AssemblyResult
     {
         public List<NamespaceInfoClass> Namespaces { get; set; }
-
 
         public AssemblyResult()
         {
@@ -28,9 +23,5 @@ namespace InfoCollector
             return Namespaces.Find(x => x.Name == name);
         }
 
-        public void Clear()
-        {
-            Namespaces.Clear();
-        }
     }
 }

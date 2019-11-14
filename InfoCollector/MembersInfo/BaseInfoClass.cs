@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.Text;
-using InfoCollector.Containers;
 
 namespace InfoCollector
 {
@@ -58,22 +57,30 @@ namespace InfoCollector
             return method.Name;
         }
 
-        protected string GetMethodDeclaration(MethodBase method)
+        protected string GetMethodDeclaration(MethodBase methodBase)
         {
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
-            if (method.IsAssembly)
+            if (methodBase.IsAssembly)
                 result.Append("internal ");
-            else if (method.IsFamily)
+            else if (methodBase.IsFamily)
                 result.Append("protected ");
-            else if (method.IsFamilyOrAssembly)
+            else if (methodBase.IsFamilyOrAssembly)
                 result.Append("protected internal ");
-            else if (method.IsFamilyAndAssembly)
+            else if (methodBase.IsFamilyAndAssembly)
                 result.Append("private protected ");
-            else if (method.IsPrivate)
+            else if (methodBase.IsPrivate)
                 result.Append("private ");
-            else if (method.IsPublic)
+            else if (methodBase.IsPublic)
                 result.Append("public ");
+
+            if (methodBase.IsStatic)
+                result.Append("static ");
+            else if (methodBase.IsAbstract)
+                result.Append("abstract ");
+            else if (methodBase.IsVirtual)
+                result.Append("virtual ");
+
             return result.ToString();
         }
     }

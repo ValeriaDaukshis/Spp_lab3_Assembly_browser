@@ -1,18 +1,15 @@
 ﻿using System.Reflection;
 using InfoCollector.Containers;
 
-namespace InfoCollector
+namespace InfoCollector.MembersInfo
 {
     class ConstructorInfoClass : BaseInfoClass, Member
     {
-        private ConstructorInfo constructorInfo;
-
         public string Name { get; set; }
 
         public ConstructorInfoClass(ConstructorInfo constructorInfo)
         {
-            this.constructorInfo = constructorInfo;
-            Name = $"constructor {GetConstructorInfo(constructorInfo)}";
+            Name = GetConstructorInfo(constructorInfo);
         }
 
         private string GetConstructorInfo(ConstructorInfo constructorInfo)

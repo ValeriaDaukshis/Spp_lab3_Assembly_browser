@@ -16,18 +16,13 @@
                     <MenuItem Header="Open" Command="{Binding OpenFileCommand}"></MenuItem>
                 </MenuItem>
             </Menu>
-            <StatusBar DockPanel.Dock="Bottom">
-                <StatusBarItem>
-                    <TextBlock Text="{Binding Filename}"/>
-                </StatusBarItem>
-            </StatusBar>
-            <StackPanel DataContext="{Binding Result}" Margin="2" Grid.Row="1" Orientation="Horizontal">
-                <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" Margin="10,10,10,10.4" VerticalAlignment="Stretch" ItemsSource="{Binding Namespaces}" Width="684">
+            <StackPanel DataContext="{Binding Result}" Margin="2" Orientation="Horizontal">
+                <TreeView x:Name="MainTreeView" HorizontalAlignment="Stretch" Margin="10,10,10,10.4" VerticalAlignment="Stretch" ItemsSource="{Binding Namespaces}" Width="770">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Classes}">
                             <Label Content="{Binding Path=Name}" />
                             <HierarchicalDataTemplate.ItemTemplate>
-                                <HierarchicalDataTemplate  ItemsSource="{Binding Elements}">
+                                <HierarchicalDataTemplate ItemsSource="{Binding Elements}">
                                     <Label Content="{Binding Path=Name}" />
                                     <HierarchicalDataTemplate.ItemTemplate>
                                         <HierarchicalDataTemplate  ItemsSource="{Binding ClassificationElements}">

@@ -6,32 +6,38 @@ namespace InfoCollector
 {
     public class FieldInfoClass : BaseInfoClass, Member
     {
-        private FieldInfo info;
-
         public string Name { get; set; }
         
         public FieldInfoClass(FieldInfo info)
         {
-            this.info = info;
             Name = GetFieldInfo(info);
         }
 
-        protected string GetFieldInfo(FieldInfo field)
+        protected string GetFieldInfo(FieldInfo fieldInfo)
         {
-            StringBuilder result = new StringBuilder();
-
-            if (field.IsAssembly)
+            var result = new StringBuilder();
+            if (fieldInfo.IsAssembly)
                 result.Append("internal ");
-            else if (field.IsFamily)
+            else if (fieldInfo.IsFamily)
                 result.Append("protected ");
-            else if (field.IsFamilyOrAssembly)
+            else if (fieldInfo.IsFamilyOrAssembly)
                 result.Append("protected internal ");
-            else if (field.IsFamilyAndAssembly)
+            else if (fieldInfo.IsFamilyAndAssembly)
                 result.Append("private protected ");
-            else if (field.IsPrivate)
+            else if (fieldInfo.IsPrivate)
                 result.Append("private ");
-            else if (field.IsPublic)
+            else if (fieldInfo.IsPublic)
                 result.Append("public ");
+
+            if (fieldInfo.IsInitOnly)
+                result.Append("readonly ");
+            if (fieldInfo.IsStatic)
+                result.Append("static ");
+
+            result.Append(GetTypeName(fieldInfo.FieldType));
+            result.Append(" ");
+            result.Append(fieldInfo.Name);
+
             return result.ToString();
         }
     }

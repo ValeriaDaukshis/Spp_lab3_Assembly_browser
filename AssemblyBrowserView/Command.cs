@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace AssemblyBrowserView
@@ -28,6 +29,13 @@ namespace AssemblyBrowserView
         public void Execute(object parameter)
         {
             this.execute(parameter);
+        }
+
+        class Node
+        {
+            public string Value { get; set; }
+
+            public List<Node> InnerNodes { get; set; }
         }
     }
 }
